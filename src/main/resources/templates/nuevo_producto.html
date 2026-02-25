@@ -10,6 +10,11 @@
     <nav class="navbar navbar-dark bg-primary mb-4">
         <div class="container">
             <span class="navbar-brand">Ferreteria Zamora - Inventario</span>
+            <div class="d-flex gap-3">
+                <a th:href="@{/productos}" class="text-white text-decoration-none fw-bold">Productos</a>
+                <a th:href="@{/categorias}" class="text-white text-decoration-none">Categorias</a>
+                <a th:href="@{/proveedores}" class="text-white text-decoration-none">Proveedores</a>
+            </div>
         </div>
     </nav>
 
@@ -22,8 +27,24 @@
                 <input type="text" class="form-control" id="nombre" th:field="*{nombre}" required>
             </div>
             <div class="mb-3">
-                <label for="categoria" class="form-label">Categoria</label>
-                <input type="text" class="form-control" id="categoria" th:field="*{categoria}">
+                <label for="categoriaId" class="form-label">Categoria</label>
+                <select class="form-select" id="categoriaId" name="categoriaId">
+                    <option value="">-- Sin categoria --</option>
+                    <option th:each="cat : ${categorias}"
+                            th:value="${cat.id}"
+                            th:text="${cat.nombre}">
+                    </option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="proveedorId" class="form-label">Proveedor</label>
+                <select class="form-select" id="proveedorId" name="proveedorId">
+                    <option value="">-- Sin proveedor --</option>
+                    <option th:each="prov : ${proveedores}"
+                            th:value="${prov.id}"
+                            th:text="${prov.nombre}">
+                    </option>
+                </select>
             </div>
             <div class="mb-3">
                 <label for="precio" class="form-label">Precio (S/)</label>

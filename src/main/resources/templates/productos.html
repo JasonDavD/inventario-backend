@@ -10,6 +10,11 @@
     <nav class="navbar navbar-dark bg-primary mb-4">
         <div class="container">
             <span class="navbar-brand">Ferreteria Zamora - Inventario</span>
+            <div class="d-flex gap-3">
+                <a th:href="@{/productos}" class="text-white text-decoration-none fw-bold">Productos</a>
+                <a th:href="@{/categorias}" class="text-white text-decoration-none">Categorias</a>
+                <a th:href="@{/proveedores}" class="text-white text-decoration-none">Proveedores</a>
+            </div>
         </div>
     </nav>
 
@@ -29,6 +34,7 @@
                     <th>ID</th>
                     <th>Nombre</th>
                     <th>Categoria</th>
+                    <th>Proveedor</th>
                     <th>Precio</th>
                     <th>Stock</th>
                     <th>Fecha Registro</th>
@@ -39,7 +45,8 @@
                 <tr th:each="producto : ${productos}">
                     <td th:text="${producto.id}"></td>
                     <td th:text="${producto.nombre}"></td>
-                    <td th:text="${producto.categoria}"></td>
+                    <td th:text="${producto.categoria != null ? producto.categoria.nombre : '-'}"></td>
+                    <td th:text="${producto.proveedor != null ? producto.proveedor.nombre : '-'}"></td>
                     <td th:text="'S/ ' + ${#numbers.formatDecimal(producto.precio, 1, 2)}"></td>
                     <td th:text="${producto.stock}"></td>
                     <td th:text="${producto.fechaRegistro != null ? #temporals.format(producto.fechaRegistro, 'dd/MM/yyyy HH:mm') : '-'}"></td>
