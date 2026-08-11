@@ -10,10 +10,13 @@
     <nav class="navbar navbar-dark bg-primary mb-4">
         <div class="container">
             <span class="navbar-brand">Ferreteria Zamora - Inventario</span>
-            <div class="d-flex gap-3">
+            <div class="d-flex gap-3 align-items-center">
                 <a th:href="@{/productos}" class="text-white text-decoration-none fw-bold">Productos</a>
                 <a th:href="@{/categorias}" class="text-white text-decoration-none">Categorias</a>
                 <a th:href="@{/proveedores}" class="text-white text-decoration-none">Proveedores</a>
+                <form th:action="@{/logout}" method="post" class="m-0">
+                    <button type="submit" class="btn btn-sm btn-outline-light">Cerrar sesion</button>
+                </form>
             </div>
         </div>
     </nav>
