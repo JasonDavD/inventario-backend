@@ -17,6 +17,12 @@ public class Proveedor {
 
     private String direccion;
 
+    @Column(name = "logo_url")
+    private String logoUrl;
+
+    @Column(name = "logo_public_id")
+    private String logoPublicId;
+
     public Proveedor() {}
 
     public Long getId() { return id; }
@@ -30,4 +36,10 @@ public class Proveedor {
 
     public String getDireccion() { return direccion; }
     public void setDireccion(String direccion) { this.direccion = direccion; }
+
+    public String getLogoUrl() { return logoUrl; }
+    public void setLogoUrl(String logoUrl) { this.logoUrl = logoUrl; }
+
+    public String getLogoPublicId() { return logoPublicId; }
+    public void setLogoPublicId(String logoPublicId) { this.logoPublicId = logoPublicId; }
 }

@@ -65,6 +65,13 @@
             <scope>runtime</scope>
         </dependency>
 
+        <!-- Cloudinary (almacenamiento de imagenes) -->
+        <dependency>
+            <groupId>com.cloudinary</groupId>
+            <artifactId>cloudinary-http44</artifactId>
+            <version>1.39.0</version>
+        </dependency>
+
         <!-- PostgreSQL (produccion) -->
         <dependency>
             <groupId>org.postgresql</groupId>

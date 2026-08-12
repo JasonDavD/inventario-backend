@@ -60,6 +60,9 @@ public class SecurityConfig {
                     .hasAnyRole("ADMIN", "OPERADOR", "LECTOR")
                 .requestMatchers(HttpMethod.POST, "/api/productos/**").hasAnyRole("ADMIN", "OPERADOR")
                 .requestMatchers(HttpMethod.PUT, "/api/productos/**").hasAnyRole("ADMIN", "OPERADOR")
+                // Regla especifica antes que la general: borrar UNA imagen es una accion
+                // menor (mismo nivel que crear/editar), borrar el producto entero es solo ADMIN.
+                .requestMatchers(HttpMethod.DELETE, "/api/productos/*/imagenes/**").hasAnyRole("ADMIN", "OPERADOR")
                 .requestMatchers(HttpMethod.DELETE, "/api/productos/**").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.POST, "/api/categorias/**", "/api/proveedores/**").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.PUT, "/api/categorias/**", "/api/proveedores/**").hasRole("ADMIN")

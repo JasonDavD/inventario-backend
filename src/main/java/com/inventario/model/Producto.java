@@ -2,6 +2,8 @@ package com.inventario.model;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "productos")
@@ -30,6 +32,10 @@ public class Producto {
 
     @Column(name = "fecha_registro")
     private LocalDateTime fechaRegistro;
+
+    @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OrderBy("orden ASC")
+    private List<ProductoImagen> imagenes = new ArrayList<>();
 
     public Producto() {}
 
@@ -60,4 +66,6 @@ public class Producto {
 
     public LocalDateTime getFechaRegistro() { return fechaRegistro; }
     public void setFechaRegistro(LocalDateTime fechaRegistro) { this.fechaRegistro = fechaRegistro; }
+
+    public List<ProductoImagen> getImagenes() { return imagenes; }
 }

@@ -46,7 +46,12 @@ El usuario admin inicial se crea solo al arrancar la aplicacion (usuario/passwor
 | POST / PUT / DELETE | `/api/categorias`, `/api/categorias/{id}` | Gestionar categorias | ADMIN |
 | GET | `/api/proveedores` | Listar proveedores | LECTOR |
 | POST / PUT / DELETE | `/api/proveedores`, `/api/proveedores/{id}` | Gestionar proveedores | ADMIN |
+| POST | `/api/proveedores/{id}/logo` | Subir/reemplazar el logo (multipart, campo `archivo`) | ADMIN |
+| POST | `/api/productos/{id}/imagenes` | Subir una imagen del producto, maximo 5 (multipart, campo `archivo`) | OPERADOR |
+| DELETE | `/api/productos/{id}/imagenes/{imagenId}` | Eliminar una imagen puntual del producto | OPERADOR |
 | GET / POST / PUT / DELETE | `/api/usuarios`, `/api/usuarios/{id}` | Gestion de usuarios | ADMIN |
+
+Las imagenes se almacenan en Cloudinary (no en el filesystem del servidor, que en Render es efimero); `Producto` y `Proveedor` solo guardan la URL resultante. `Producto.imagenes` viaja embebido en el JSON de cada producto.
 
 ## Portal Web
 Requiere login (`/login`). Rutas principales por recurso (`productos`, `categorias`, `proveedores`):
@@ -63,6 +68,7 @@ Requiere login (`/login`). Rutas principales por recurso (`productos`, `categori
 | `JWT_EXPIRATION_MINUTES` | Expiracion del token en minutos (default 120) |
 | `ADMIN_USERNAME`, `ADMIN_INITIAL_PASSWORD` | Credenciales del usuario admin inicial |
 | `H2_CONSOLE` | Habilita la consola H2 en `/h2-console` (default true; poner en false en produccion) |
+| `CLOUDINARY_URL` | Credenciales de Cloudinary para subir imagenes, formato `cloudinary://<api_key>:<api_secret>@<cloud_name>` (se obtiene del dashboard de Cloudinary) |
 
 ## Ejecucion Local
 ```bash
